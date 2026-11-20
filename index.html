@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía CSS con Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- NAVBAR (componente Bootstrap) -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-sm" id="topnav">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#inicio"><i class="bi bi-braces-asterisk text-primary"></i> Guía CSS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuMovil" aria-label="Abrir menú">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-none d-lg-flex">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small">
+                <li class="nav-item"><a class="nav-link" href="#t21">2.1 Sintaxis</a></li>
+                <li class="nav-item"><a class="nav-link" href="#t22">2.2 Incorporación</a></li>
+                <li class="nav-item"><a class="nav-link" href="#t23">2.3 Herencia</a></li>
+                <li class="nav-item"><a class="nav-link" href="#t24">2.4 Especificidad</a></li>
+                <li class="nav-item"><a class="nav-link" href="#t25">2.5 Flexbox</a></li>
+                <li class="nav-item"><a class="nav-link" href="#t26">2.6 Media queries</a></li>
+                <li class="nav-item"><a class="nav-link" href="#t27">2.7 Pseudo-elementos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#t28">2.8 Pseudo-clases</a></li>
+                <li class="nav-item"><a class="nav-link" href="#t29">2.9 Z-index</a></li>
+            </ul>
+            <button class="btn btn-outline-secondary btn-sm ms-3" id="themeBtn" type="button" aria-label="Cambiar tema">
+                <i class="bi bi-moon-stars-fill"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- OFFCANVAS (menú móvil) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="menuMovil">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Temas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" href="#t21">2.1 Estructura y sintaxis</a>
+            <a class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" href="#t22">2.2 Tipos de incorporación</a>
+            <a class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" href="#t23">2.3 Identación, herencia y comentarios</a>
+            <a class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" href="#t24">2.4 Especificidad</a>
+            <a class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" href="#t25">2.5 Flexbox, grid y breakpoints</a>
+            <a class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" href="#t26">2.6 Media queries</a>
+            <a class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" href="#t27">2.7 Pseudo-elementos</a>
+            <a class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" href="#t28">2.8 Pseudo-clases</a>
+            <a class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas" href="#t29">2.9 Z-index</a>
+        </div>
+        <button class="btn btn-outline-secondary w-100 mt-3" id="themeBtnMobile" type="button"><i class="bi bi-moon-stars-fill"></i> Modo claro / oscuro</button>
+    </div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <span class="badge text-bg-light mb-3">Curso Front End · Bootstrap 5</span>
+                <h1 class="display-4 fw-bold">Aprende CSS<br>jugando con el código</h1>
+                <p class="lead opacity-75">Nueve temas, cada uno con su explicación, su código y una demo que puedes tocar. Cambia valores, mira qué pasa y entiende el porqué.</p>
+                <a href="#t21" class="btn btn-light btn-lg me-2">Empezar</a>
+                <a href="#resumen" class="btn btn-outline-light btn-lg">Ver resumen</a>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <pre class="code shadow-lg"><span class="tk-sel">.tarjeta</span> {
+    <span class="tk-prop">display</span>: <span class="tk-val">flex</span>;
+    <span class="tk-prop">gap</span>: <span class="tk-val">1rem</span>;
+    <span class="tk-prop">z-index</span>: <span class="tk-val">10</span>;
+}
+<span class="tk-at">@media</span> (min-width: 768px) {
+    <span class="tk-sel">.tarjeta</span> { <span class="tk-prop">gap</span>: <span class="tk-val">2rem</span>; }
+}</pre>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- TARJETAS DE ÍNDICE -->
+<div class="container py-5">
+    <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-lg-3">
+        <div class="col"><a href="#t21" class="text-decoration-none"><div class="card card-lift h-100"><div class="card-body"><i class="bi bi-code-slash fs-2 text-primary"></i><h5 class="card-title mt-2">2.1 Estructura y sintaxis</h5><p class="card-text text-body-secondary small mb-0">Selector, propiedad y valor.</p></div></div></a></div>
+        <div class="col"><a href="#t22" class="text-decoration-none"><div class="card card-lift h-100"><div class="card-body"><i class="bi bi-file-earmark-code fs-2 text-success"></i><h5 class="card-title mt-2">2.2 Incorporación</h5><p class="card-text text-body-secondary small mb-0">Interno, externo y en línea.</p></div></div></a></div>
+        <div class="col"><a href="#t23" class="text-decoration-none"><div class="card card-lift h-100"><div class="card-body"><i class="bi bi-diagram-3 fs-2 text-warning"></i><h5 class="card-title mt-2">2.3 Identación y herencia</h5><p class="card-text text-body-secondary small mb-0">Orden, herencia y comentarios.</p></div></div></a></div>
+        <div class="col"><a href="#t24" class="text-decoration-none"><div class="card card-lift h-100"><div class="card-body"><i class="bi bi-bar-chart-steps fs-2 text-danger"></i><h5 class="card-title mt-2">2.4 Especificidad</h5><p class="card-text text-body-secondary small mb-0">Qué regla gana y por qué.</p></div></div></a></div>
+        <div class="col"><a href="#t25" class="text-decoration-none"><div class="card card-lift h-100"><div class="card-body"><i class="bi bi-layout-three-columns fs-2 text-info"></i><h5 class="card-title mt-2">2.5 Flexbox y grid</h5><p class="card-text text-body-secondary small mb-0">Layouts y breakpoints.</p></div></div></a></div>
+        <div class="col"><a href="#t26" class="text-decoration-none"><div class="card card-lift h-100"><div class="card-body"><i class="bi bi-phone-landscape fs-2 text-primary"></i><h5 class="card-title mt-2">2.6 Media queries</h5><p class="card-text text-body-secondary small mb-0">Diseño que se adapta.</p></div></div></a></div>
+        <div class="col"><a href="#t27" class="text-decoration-none"><div class="card card-lift h-100"><div class="card-body"><i class="bi bi-magic fs-2 text-success"></i><h5 class="card-title mt-2">2.7 Pseudo-elementos</h5><p class="card-text text-body-secondary small mb-0">::before, ::after y más.</p></div></div></a></div>
+        <div class="col"><a href="#t28" class="text-decoration-none"><div class="card card-lift h-100"><div class="card-body"><i class="bi bi-hand-index-thumb fs-2 text-warning"></i><h5 class="card-title mt-2">2.8 Pseudo-clases</h5><p class="card-text text-body-secondary small mb-0">:hover, :focus, :nth-child.</p></div></div></a></div>
+        <div class="col"><a href="#t29" class="text-decoration-none"><div class="card card-lift h-100"><div class="card-body"><i class="bi bi-layers fs-2 text-danger"></i><h5 class="card-title mt-2">2.9 Z-index</h5><p class="card-text text-body-secondary small mb-0">Qué queda encima de qué.</p></div></div></a></div>
+    </div>
+</div>
+
+<main class="container pb-5">
+
+    <!-- 2.1 -->
+    <section id="t21" class="mb-5">
+        <div class="d-flex align-items-center gap-3 mb-3"><span class="section-num">2.1</span><h2 class="mb-0">Estructura y sintaxis</h2></div>
+        <p>Una regla CSS tiene tres piezas: el <strong>selector</strong> (a quién), la <strong>propiedad</strong> (qué cambio) y el <strong>valor</strong> (cómo queda). Las propiedades y valores van dentro de llaves <code>{ }</code>, se separan con <code>:</code> y cada declaración termina en <code>;</code>.</p>
+        <div class="row g-4">
+            <div class="col-lg-6">
+<pre class="code"><span class="tk-sel">h1</span> {                    <span class="tk-com">/* selector */</span>
+    <span class="tk-prop">color</span>: <span class="tk-val">crimson</span>;      <span class="tk-com">/* propiedad: valor; */</span>
+    <span class="tk-prop">font-size</span>: <span class="tk-val">2rem</span>;
+}</pre>
+                <div class="mt-3">
+                    <span class="badge text-bg-warning">selector</span>
+                    <span class="badge text-bg-info">propiedad</span>
+                    <span class="badge text-bg-success">valor</span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">Tipos de selectores más usados</div>
+                    <ul class="list-group list-group-flush small">
+                        <li class="list-group-item"><code>p</code> · de elemento</li>
+                        <li class="list-group-item"><code>.caja</code> · de clase</li>
+                        <li class="list-group-item"><code>#menu</code> · de id</li>
+                        <li class="list-group-item"><code>*</code> · universal</li>
+                        <li class="list-group-item"><code>div p</code> · descendiente</li>
+                        <li class="list-group-item"><code>div &gt; p</code> · hijo directo</li>
+                        <li class="list-group-item"><code>h1, h2</code> · agrupados</li>
+                    </ul>
+                </div>
+            </div>
+        
+    </section>
+
+    <!-- 2.2 -->
+    <section id="t22" class="mb-5">
+        <div class="d-flex align-items-center gap-3 mb-3"><span class="section-num">2.2</span><h2 class="mb-0">Tipos de incorporación</h2></div>
+        <p>Hay tres maneras de conectar CSS con HTML. Elige según el tamaño del proyecto.</p>
+
+        <ul class="nav nav-pills mb-3" role="tablist">
+            <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#inc-ext" type="button">Externo</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#inc-int" type="button">Interno</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#inc-lin" type="button">En línea</button></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="inc-ext">
+                <p>Un archivo <code>.css</code> aparte, enlazado desde el <code>&lt;head&gt;</code>. Es la forma recomendada: se reutiliza en varias páginas.</p>
+<pre class="code"><span class="tk-com">&lt;!-- index.html --&gt;</span>
+&lt;link rel="stylesheet" href="index.css"&gt;
+
+<span class="tk-com">/* index.css */</span>
+<span class="tk-sel">body</span> { <span class="tk-prop">background-color</span>: <span class="tk-val">#A2A44C</span>; }</pre>
+            </div>
+            <div class="tab-pane fade" id="inc-int">
+                <p>Dentro de una etiqueta <code>&lt;style&gt;</code> en el <code>&lt;head&gt;</code>. Sirve para páginas pequeñas o pruebas rápidas. Esta guía usa CSS externo (css/styles.css).</p>
+<pre class="code">&lt;head&gt;
+    &lt;style&gt;
+        <span class="tk-sel">p</span> { <span class="tk-prop">color</span>: <span class="tk-val">teal</span>; }
+    &lt;/style&gt;
+&lt;/head&gt;</pre>
+            </div>
+            <div class="tab-pane fade" id="inc-lin">
+                <p>Con el atributo <code>style</code> directamente en la etiqueta. Tiene mucha fuerza (especificidad), pero es difícil de mantener.</p>
+<pre class="code">&lt;p style="color: teal; font-weight: bold;"&gt;Texto&lt;/p&gt;</pre>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-4">
+            <table class="table table-striped table-bordered align-middle">
+                <thead class="table-dark"><tr><th>Tipo</th><th>Dónde va</th><th>Ventaja</th><th>Desventaja</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="badge text-bg-success">Externo</span></td><td>Archivo .css</td><td>Reutilizable y ordenado</td><td>Una petición extra</td></tr>
+                    <tr><td><span class="badge text-bg-primary">Interno</span></td><td>&lt;style&gt;</td><td>Todo en un archivo</td><td>No se comparte entre páginas</td></tr>
+                    <tr><td><span class="badge text-bg-danger">En línea</span></td><td>style=""</td><td>Prioridad alta, rápido</td><td>Desordenado, difícil de mantener</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 2.3 -->
+    <section id="t23" class="mb-5">
+        <div class="d-flex align-items-center gap-3 mb-3"><span class="section-num">2.3</span><h2 class="mb-0">Identación, herencias y comentarios</h2></div>
+        <div class="accordion" id="acc23">
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1">Identación: código legible</button></h3>
+                <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#acc23">
+                    <div class="accordion-body">
+                        <p>CSS no exige identación, pero ordenarlo te ahorra errores. Una declaración por línea y sangría de 4 espacios.</p>
+                        <div class="row g-3">
+                            <div class="col-md-6"><span class="badge text-bg-danger mb-2">Difícil de leer</span>
+<pre class="code">.caja{color:red;height:100px;background:blue}</pre></div>
+                            <div class="col-md-6"><span class="badge text-bg-success mb-2">Ordenado</span>
+<pre class="code"><span class="tk-sel">.caja</span> {
+    <span class="tk-prop">color</span>: <span class="tk-val">red</span>;
+    <span class="tk-prop">height</span>: <span class="tk-val">100px</span>;
+    <span class="tk-prop">background</span>: <span class="tk-val">blue</span>;
+}</pre></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2">Herencia: lo que pasa de padres a hijos</button></h3>
+                <div id="a2" class="accordion-collapse collapse" data-bs-parent="#acc23">
+                    <div class="accordion-body">
+                        <p>Algunas propiedades (<code>color</code>, <code>font-family</code>, <code>font-size</code>, <code>line-height</code>) pasan a los hijos solas. Otras (<code>border</code>, <code>margin</code>, <code>padding</code>, <code>background</code>) no. Puedes forzarlas con <code>inherit</code>.</p>
+                        <div class="padre-demo">
+                            Soy el padre: color morado y fuente Georgia.
+                            <p class="mb-1 mt-2">Soy un hijo sin reglas propias: heredo todo.</p>
+                            <p class="no-hereda mb-0">Soy un hijo con reglas propias: color verde y otra fuente.</p>
+                        </div>
+<pre class="code mt-3"><span class="tk-sel">.padre</span> { <span class="tk-prop">color</span>: <span class="tk-val">#6f42c1</span>; <span class="tk-prop">font-family</span>: <span class="tk-val">Georgia</span>; }
+<span class="tk-sel">.hijo</span>  { <span class="tk-prop">border</span>: <span class="tk-val">inherit</span>; }  <span class="tk-com">/* forzar herencia */</span></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3">Comentarios</button></h3>
+                <div id="a3" class="accordion-collapse collapse" data-bs-parent="#acc23">
+                    <div class="accordion-body">
+                        <p>Se escriben entre <code>/* */</code>, pueden ocupar varias líneas y el navegador los ignora. Úsalos para explicar o para desactivar una línea sin borrarla. Ojo: <code>//</code> no funciona en CSS.</p>
+<pre class="code"><span class="tk-com">/* ===== Cabecera ===== */</span>
+<span class="tk-sel">.caja1</span> {
+    <span class="tk-prop">height</span>: <span class="tk-val">30px</span>;
+    <span class="tk-com">/* background-color: red;  ← desactivada */</span>
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2.4 -->
+    <section id="t24" class="mb-5">
+        <div class="d-flex align-items-center gap-3 mb-3"><span class="section-num">2.4</span><h2 class="mb-0">Niveles de especificidad</h2></div>
+        <p>Cuando dos reglas chocan sobre el mismo elemento, gana la más específica. Si empatan, gana la que aparece después en el código.</p>
+        <div class="row g-4">
+            <div class="col-lg-5">
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">!important</div>Rompe la jerarquía</div><span class="badge text-bg-dark">gana siempre</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">En línea</div><code>style="..."</code></div><span class="badge text-bg-danger">1000</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">Id</div><code>#menu</code></div><span class="badge text-bg-warning">100</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">Clase, atributo, pseudo-clase</div><code>.caja</code> <code>:hover</code></div><span class="badge text-bg-success">10</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">Elemento, pseudo-elemento</div><code>p</code> <code>::before</code></div><span class="badge text-bg-primary">1</span></li>
+                </ol>
+            </div>
+            <div class="col-lg-7">
+                <div class="card">
+                    <div class="card-header fw-bold">Laboratorio: activa y desactiva reglas</div>
+                    <div class="card-body">
+                        <blockquote id="specTarget" class="spec-demo fs-5 fw-bold mb-3">&lt;blockquote id="specTarget" class="spec-demo"&gt;Texto de prueba&lt;/blockquote&gt;</blockquote>
+                        <div class="form-check form-switch"><input class="form-check-input spec-chk" type="checkbox" id="sp1" data-rule="el" checked><label class="form-check-label" for="sp1"><code>blockquote { color: azul }</code> (elemento)</label></div>
+                        <div class="form-check form-switch"><input class="form-check-input spec-chk" type="checkbox" id="sp2" data-rule="cl"><label class="form-check-label" for="sp2"><code>.spec-demo { color: verde }</code> (clase)</label></div>
+                        <div class="form-check form-switch"><input class="form-check-input spec-chk" type="checkbox" id="sp3" data-rule="id"><label class="form-check-label" for="sp3"><code>#specTarget { color: rojo }</code> (id)</label></div>
+                        <div class="form-check form-switch"><input class="form-check-input spec-chk" type="checkbox" id="sp4" data-rule="in"><label class="form-check-label" for="sp4"><code>style="color: morado"</code> (en línea)</label></div>
+                        <div class="form-check form-switch"><input class="form-check-input spec-chk" type="checkbox" id="sp5" data-rule="im"><label class="form-check-label" for="sp5"><code>.spec-demo { color: naranja !important }</code></label></div>
+                        <div class="alert alert-secondary mt-3 mb-0 py-2" id="specResult">Ganador: —</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style id="specStyle"></style>
+    </section>
+
+    <!-- 2.5 -->
+    <section id="t25" class="mb-5">
+        <div class="d-flex align-items-center gap-3 mb-3"><span class="section-num">2.5</span><h2 class="mb-0">Flexbox, grid y breakpoints</h2></div>
+        <p><strong>Flexbox</strong> acomoda elementos en una dirección (fila o columna). La <strong>grid de Bootstrap</strong> divide cada fila en 12 columnas y usa <strong>breakpoints</strong> para cambiar cuántas ocupa cada elemento según el ancho de pantalla.</p>
+
+        <div class="card mb-4">
+            <div class="card-header fw-bold">Playground de Flexbox</div>
+            <div class="card-body">
+                <div class="row g-3 mb-3">
+                    <div class="col-6 col-lg-3"><label class="form-label small" for="fxDir">flex-direction</label>
+                        <select class="form-select form-select-sm fx-ctl" id="fxDir" data-prop="flexDirection"><option>row</option><option>row-reverse</option><option>column</option><option>column-reverse</option></select></div>
+                    <div class="col-6 col-lg-3"><label class="form-label small" for="fxJus">justify-content</label>
+                        <select class="form-select form-select-sm fx-ctl" id="fxJus" data-prop="justifyContent"><option>flex-start</option><option>center</option><option>flex-end</option><option>space-between</option><option>space-around</option><option>space-evenly</option></select></div>
+                    <div class="col-6 col-lg-3"><label class="form-label small" for="fxAli">align-items</label>
+                        <select class="form-select form-select-sm fx-ctl" id="fxAli" data-prop="alignItems"><option>stretch</option><option>flex-start</option><option>center</option><option>flex-end</option></select></div>
+                    <div class="col-6 col-lg-3"><label class="form-label small" for="fxWrap">flex-wrap</label>
+                        <select class="form-select form-select-sm fx-ctl" id="fxWrap" data-prop="flexWrap"><option>nowrap</option><option>wrap</option></select></div>
+                </div>
+                <div id="fxBox" class="demo d-flex" style="min-height: 200px; gap: .5rem;">
+                    <div class="bg-primary text-white p-3 rounded">1</div>
+                    <div class="bg-success text-white p-4 rounded">2</div>
+                    <div class="bg-danger text-white p-2 rounded">3</div>
+                    <div class="bg-warning p-3 rounded">4</div>
+                </div>
+                <pre class="code mt-3" id="fxCode"></pre>
+            </div>
+        </div>
+
+        <h3 class="h5">Breakpoints de Bootstrap 5</h3>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead><tr><th>Prefijo</th><th>Desde</th><th>Dispositivo típico</th><th>Ejemplo</th></tr></thead>
+                <tbody>
+                    <tr><td><code>col-</code></td><td>0px</td><td>Móvil</td><td><code>col-12</code></td></tr>
+                    <tr><td><code>col-sm-</code></td><td>576px</td><td>Móvil grande</td><td><code>col-sm-6</code></td></tr>
+                    <tr><td><code>col-md-</code></td><td>768px</td><td>Tablet</td><td><code>col-md-4</code></td></tr>
+                    <tr><td><code>col-lg-</code></td><td>992px</td><td>Laptop</td><td><code>col-lg-3</code></td></tr>
+                    <tr><td><code>col-xl-</code></td><td>1200px</td><td>Escritorio</td><td><code>col-xl-3</code></td></tr>
+                    <tr><td><code>col-xxl-</code></td><td>1400px</td><td>Pantalla grande</td><td><code>col-xxl-2</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="h5 mt-4">Grid en vivo: cambia el ancho de la ventana</h3>
+        <div class="row g-2 text-center text-white fw-bold">
+            <div class="col-12 col-md-6 col-xl-3"><div class="p-3 rounded bg-primary">col-12 col-md-6 col-xl-3</div></div>
+            <div class="col-12 col-md-6 col-xl-3"><div class="p-3 rounded bg-success">col-12 col-md-6 col-xl-3</div></div>
+            <div class="col-12 col-md-6 col-xl-3"><div class="p-3 rounded bg-danger">col-12 col-md-6 col-xl-3</div></div>
+            <div class="col-12 col-md-6 col-xl-3"><div class="p-3 rounded bg-warning text-dark">col-12 col-md-6 col-xl-3</div></div>
+        </div>
+        <div class="alert alert-warning mt-3 mb-0"><i class="bi bi-exclamation-triangle"></i> Recuerda lo que vimos en tu landing: si las columnas de una fila no suman 12, queda un hueco. Y si las cajas de una misma fila tienen alturas distintas, se ve el fondo del <code>body</code>.</div>
+    </section>
+
+    <!-- 2.6 -->
+    <section id="t26" class="mb-5">
+        <div class="d-flex align-items-center gap-3 mb-3"><span class="section-num">2.6</span><h2 class="mb-0">Media queries</h2></div>
+        <p>Son condiciones que aplican reglas CSS solo cuando se cumple algo, normalmente el ancho de pantalla. Con <code>min-width</code> piensas "de este tamaño hacia arriba" (mobile first). Con <code>max-width</code>, "de este tamaño hacia abajo".</p>
+        <div class="row g-4">
+            <div class="col-lg-6">
+<pre class="code"><span class="tk-sel">.caja</span> { <span class="tk-prop">height</span>: <span class="tk-val">100px</span>; }   <span class="tk-com">/* móvil */</span>
+
+<span class="tk-at">@media</span> (min-width: 768px) {
+    <span class="tk-sel">.caja</span> { <span class="tk-prop">height</span>: <span class="tk-val">150px</span>; }
+}
+<span class="tk-at">@media</span> (min-width: 992px) {
+    <span class="tk-sel">.caja</span> { <span class="tk-prop">height</span>: <span class="tk-val">200px</span>; }
+}
+<span class="tk-at">@media</span> (max-width: 575.98px) {
+    <span class="tk-sel">.caja</span> { <span class="tk-prop">display</span>: <span class="tk-val">none</span>; }
+}</pre>
+            </div>
+            <div class="col-lg-6">
+                <div class="mq-box mb-3"></div>
+                <div class="card"><div class="card-body">
+                    <div class="d-flex justify-content-between small mb-1"><span>Ancho actual de la ventana</span><strong id="mqWidth">0 px</strong></div>
+                    <div class="progress" role="progressbar" aria-label="Ancho de ventana"><div class="progress-bar" id="mqBar" style="width: 0%"></div></div>
+                    <div class="small text-body-secondary mt-2">Redimensiona la ventana y mira cómo cambian el color y el texto de la caja.</div>
+                </div></div>
+            </div>
+        </div>
+        <div class="alert alert-info mt-4 mb-0"><i class="bi bi-info-circle"></i> Otras condiciones útiles: <code>(orientation: landscape)</code>, <code>(prefers-color-scheme: dark)</code> y <code>print</code> para impresión.</div>
+    </section>
+
+    <!-- 2.7 -->
+    <section id="t27" class="mb-5">
+        <div class="d-flex align-items-center gap-3 mb-3"><span class="section-num">2.7</span><h2 class="mb-0">Pseudo-elementos</h2></div>
+        <p>Se escriben con <strong>dos dos puntos</strong> (<code>::</code>). Estilizan una parte de un elemento o crean contenido extra sin tocar el HTML. Para <code>::before</code> y <code>::after</code> la propiedad <code>content</code> es obligatoria.</p>
+        <div class="row g-4">
+            <div class="col-md-6"><div class="card h-100"><div class="card-body">
+                <h5 class="card-title"><code>::before</code> y <code>::after</code></h5>
+                <p class="pe-before mb-1">Texto con estrella antes</p>
+                <p class="pe-after mb-3">Texto con check después</p>
+<pre class="code"><span class="tk-sel">p::before</span> { <span class="tk-prop">content</span>: <span class="tk-val">"★ "</span>; }
+<span class="tk-sel">p::after</span>  { <span class="tk-prop">content</span>: <span class="tk-val">" ✔"</span>; }</pre>
+            </div></div></div>
+            <div class="col-md-6"><div class="card h-100"><div class="card-body">
+                <h5 class="card-title"><code>::first-letter</code></h5>
+                <p class="pe-letter">CSS permite darle estilo a la primera letra de un párrafo para lograr efectos editoriales, como las revistas.</p>
+<pre class="code"><span class="tk-sel">p::first-letter</span> { <span class="tk-prop">font-size</span>: <span class="tk-val">3rem</span>; <span class="tk-prop">float</span>: <span class="tk-val">left</span>; }</pre>
+            </div></div></div>
+            <div class="col-md-6"><div class="card h-100"><div class="card-body">
+                <h5 class="card-title"><code>::first-line</code></h5>
+                <p class="pe-line">La primera línea de este párrafo cambia de estilo y, si reduces la ventana, el efecto se adapta a lo que quepa en esa primera línea.</p>
+<pre class="code"><span class="tk-sel">p::first-line</span> { <span class="tk-prop">text-transform</span>: <span class="tk-val">uppercase</span>; }</pre>
+            </div></div></div>
+            <div class="col-md-6"><div class="card h-100"><div class="card-body">
+                <h5 class="card-title"><code>::selection</code> y <code>::placeholder</code></h5>
+                <p class="pe-sel">Selecciona este texto con el mouse y verás el color amarillo.</p>
+                <input type="text" class="form-control pe-input mb-3" placeholder="Placeholder en rojo cursiva">
+<pre class="code"><span class="tk-sel">p::selection</span> { <span class="tk-prop">background</span>: <span class="tk-val">#ffc107</span>; }
+<span class="tk-sel">input::placeholder</span> { <span class="tk-prop">color</span>: <span class="tk-val">red</span>; }</pre>
+            </div></div></div>
+        </div>
+        <div class="pe-ribbon mt-4">
+            <h5 class="mb-1">Ejemplo real: cinta decorativa</h5>
+            <p class="mb-0 text-body-secondary">La cinta roja "NUEVO" es solo un <code>::before</code> con <code>position: absolute</code> y <code>transform: rotate(45deg)</code>. No existe en el HTML.</p>
+        </div>
+    </section>
+
+    <!-- 2.8 -->
+    <section id="t28" class="mb-5">
+        <div class="d-flex align-items-center gap-3 mb-3"><span class="section-num">2.8</span><h2 class="mb-0">Pseudo-clases</h2></div>
+        <p>Se escriben con <strong>un solo dos puntos</strong> (<code>:</code>). Aplican estilo según el <em>estado</em> del elemento o su posición entre hermanos.</p>
+        <div class="row g-4">
+            <div class="col-md-6"><div class="card h-100"><div class="card-body">
+                <h5 class="card-title">Estados: <code>:hover</code> <code>:active</code> <code>:focus-visible</code> <code>:disabled</code></h5>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    <button class="pc-btn" type="button">Pasa el mouse</button>
+                    <button class="pc-btn" type="button" disabled>Deshabilitado</button>
+                </div>
+                <p class="small text-body-secondary">Prueba también navegar con la tecla Tab para ver el <code>:focus-visible</code>.</p>
+<pre class="code"><span class="tk-sel">.btn:hover</span>    { <span class="tk-prop">background</span>: <span class="tk-val">cyan</span>; }
+<span class="tk-sel">.btn:active</span>   { <span class="tk-prop">transform</span>: <span class="tk-val">scale(.95)</span>; }
+<span class="tk-sel">.btn:disabled</span> { <span class="tk-prop">background</span>: <span class="tk-val">gray</span>; }</pre>
+            </div></div></div>
+            <div class="col-md-6"><div class="card h-100"><div class="card-body">
+                <h5 class="card-title">Posición: <code>:first-child</code> <code>:last-child</code> <code>:nth-child()</code></h5>
+                <ul class="list-group pc-list mb-3">
+                    <li class="list-group-item">Primero (first-child)</li>
+                    <li class="list-group-item">Segundo (even)</li>
+                    <li class="list-group-item">Tercero</li>
+                    <li class="list-group-item">Cuarto (even)</li>
+                    <li class="list-group-item">Último (last-child)</li>
+                </ul>
+<pre class="code"><span class="tk-sel">li:first-child</span>      { <span class="tk-prop">color</span>: <span class="tk-val">green</span>; }
+<span class="tk-sel">li:nth-child(even)</span> { <span class="tk-prop">background</span>: <span class="tk-val">#eee</span>; }</pre>
+            </div></div></div>
+            <div class="col-md-6"><div class="card h-100"><div class="card-body">
+                <h5 class="card-title">Formularios: <code>:checked</code> <code>:focus</code> <code>:valid</code> <code>:invalid</code></h5>
+                <div class="form-check mb-3"><input class="form-check-input pc-check" type="checkbox" id="pcCk"><label class="form-check-label" for="pcCk">Marca esta tarea como hecha</label></div>
+                <label class="form-label" for="pcMail">Correo (válido en verde, inválido en rojo)</label>
+                <input type="email" class="form-control pc-input" id="pcMail" placeholder="tu@correo.com" required>
+<pre class="code mt-3"><span class="tk-sel">input:checked + label</span> { <span class="tk-prop">text-decoration</span>: <span class="tk-val">line-through</span>; }
+<span class="tk-sel">input:invalid</span> { <span class="tk-prop">border-color</span>: <span class="tk-val">red</span>; }</pre>
+            </div></div></div>
+            <div class="col-md-6"><div class="card h-100"><div class="card-body">
+                <h5 class="card-title">Útiles para lógica: <code>:not()</code> <code>:is()</code> <code>:has()</code></h5>
+<pre class="code"><span class="tk-com">/* todos los li menos el último */</span>
+<span class="tk-sel">li:not(:last-child)</span> { <span class="tk-prop">border-bottom</span>: <span class="tk-val">1px solid</span>; }
+
+<span class="tk-com">/* agrupar selectores */</span>
+<span class="tk-sel">:is(h1, h2, h3)</span> { <span class="tk-prop">font-family</span>: <span class="tk-val">Georgia</span>; }
+
+<span class="tk-com">/* tarjeta que contiene una imagen */</span>
+<span class="tk-sel">.card:has(img)</span> { <span class="tk-prop">padding</span>: <span class="tk-val">0</span>; }</pre>
+                <div class="alert alert-secondary mt-3 mb-0 small">Regla útil: <strong>pseudo-clase = estado (:)</strong>, <strong>pseudo-elemento = parte (::)</strong>.</div>
+            </div></div></div>
+        </div>
+    </section>
+
+    <!-- 2.9 -->
+    <section id="t29" class="mb-5">
+        <div class="d-flex align-items-center gap-3 mb-3"><span class="section-num">2.9</span><h2 class="mb-0">Z-index</h2></div>
+        <p><code>z-index</code> controla qué elemento queda encima cuando se superponen. Un número mayor queda arriba. <strong>Solo funciona</strong> en elementos con <code>position</code> distinto de <code>static</code> (relative, absolute, fixed, sticky) y en hijos de flex o grid.</p>
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="z-stage">
+                    <div class="z-box" id="zA">A</div>
+                    <div class="z-box" id="zB">B</div>
+                    <div class="z-box" id="zC">C</div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card"><div class="card-body">
+                    <label class="form-label d-flex justify-content-between" for="zRA"><span>Caja A (roja)</span><strong id="zVA">1</strong></label>
+                    <input type="range" class="form-range z-range" id="zRA" min="-1" max="10" value="1" data-target="zA" data-out="zVA">
+                    <label class="form-label d-flex justify-content-between" for="zRB"><span>Caja B (azul)</span><strong id="zVB">2</strong></label>
+                    <input type="range" class="form-range z-range" id="zRB" min="-1" max="10" value="2" data-target="zB" data-out="zVB">
+                    <label class="form-label d-flex justify-content-between" for="zRC"><span>Caja C (verde)</span><strong id="zVC">3</strong></label>
+                    <input type="range" class="form-range z-range" id="zRC" min="-1" max="10" value="3" data-target="zC" data-out="zVC">
+                </div></div>
+            </div>
+        </div>
+<pre class="code mt-4"><span class="tk-sel">.caja</span> {
+    <span class="tk-prop">position</span>: <span class="tk-val">absolute</span>;   <span class="tk-com">/* sin esto, z-index no hace nada */</span>
+    <span class="tk-prop">z-index</span>: <span class="tk-val">10</span>;
+}</pre>
+        <div class="row g-3 mt-2">
+            <div class="col-md-6"><div class="alert alert-warning h-100 mb-0"><strong>Contexto de apilamiento.</strong> Un hijo nunca puede salir del contexto de su padre: si el padre tiene <code>z-index: 1</code>, el hijo con <code>z-index: 9999</code> sigue quedando debajo de un elemento con <code>z-index: 2</code> fuera del padre.</div></div>
+            <div class="col-md-6"><div class="alert alert-info h-100 mb-0"><strong>Escala de Bootstrap.</strong> Dropdown 1000, sticky 1020, fixed 1030, offcanvas 1045, modal 1055, popover 1070, tooltip 1080, toast 1090. Por eso la navbar fija queda sobre el contenido. Y la etiqueta de breakpoint de abajo a la derecha también usa <code>z-index</code>.</div></div>
+        </div>
+    </section>
+
+    <!-- RESUMEN -->
+    <section id="resumen" class="mb-5">
+        <h2 class="mb-3">Resumen rápido</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-dark"><tr><th>Tema</th><th>Idea clave</th></tr></thead>
+                <tbody>
+                    <tr><td>2.1 Sintaxis</td><td>selector { propiedad: valor; }</td></tr>
+                    <tr><td>2.2 Incorporación</td><td>Externo para proyectos, interno para pruebas, en línea solo en casos puntuales</td></tr>
+                    <tr><td>2.3 Herencia</td><td>Texto se hereda; caja (margin, border) no. Comentarios con /* */</td></tr>
+                    <tr><td>2.4 Especificidad</td><td>!important &gt; en línea &gt; id &gt; clase &gt; elemento</td></tr>
+                    <tr><td>2.5 Flexbox y grid</td><td>12 columnas, breakpoints xs a xxl</td></tr>
+                    <tr><td>2.6 Media queries</td><td>@media (min-width) para diseño responsive</td></tr>
+                    <tr><td>2.7 Pseudo-elementos</td><td>:: crea o selecciona partes de un elemento</td></tr>
+                    <tr><td>2.8 Pseudo-clases</td><td>: aplica estilos según estado o posición</td></tr>
+                    <tr><td>2.9 Z-index</td><td>Capas; requiere position y respeta el contexto de apilamiento</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary" type="button" id="toastBtn"><i class="bi bi-check2-circle"></i> ¡Terminé la guía!</button>
+    </section>
+</main>
+
+<footer class="bg-body-tertiary border-top py-4 text-center small text-body-secondary">
+    Guía de CSS con Bootstrap 5 · Curso Front End
+</footer>
+
+<!-- Indicador de breakpoint -->
+<span id="bpBadge" class="badge text-bg-dark fs-6 shadow">xs</span>
+
+<!-- Toast -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1090; margin-top: 56px;">
+    <div id="doneToast" class="toast align-items-center text-bg-success border-0" role="status" aria-live="polite" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">¡Buen trabajo! Ya repasaste los 9 temas.</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

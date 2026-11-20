@@ -1,0 +1,106 @@
+/* ==========================================================
+   Guía CSS con Bootstrap 5 - hoja de estilos externa
+   ========================================================== */
+
+:root {
+    --brand: #6f42c1;
+    --brand-2: #0dcaf0;
+}
+
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 80px; }
+
+.hero {
+    background: linear-gradient(135deg, var(--brand), #3d1a8c 55%, #0b5ed7);
+    color: #fff;
+    padding: 7rem 0 5rem;
+}
+
+.section-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+pre.code {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: .75rem;
+    padding: 1rem 1.25rem;
+    font-size: .875rem;
+    overflow-x: auto;
+    margin-bottom: 0;
+}
+.tk-sel { color: #f9e2af; }
+.tk-prop { color: #89dceb; }
+.tk-val { color: #a6e3a1; }
+.tk-com { color: #7f849c; font-style: italic; }
+.tk-at { color: #f38ba8; }
+
+.demo {
+    border: 2px dashed var(--bs-border-color);
+    border-radius: .75rem;
+    padding: 1.25rem;
+}
+
+.card-lift { transition: transform .2s, box-shadow .2s; }
+.card-lift:hover { transform: translateY(-4px); box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.15); }
+
+/* 2.3 herencia */
+.padre-demo { color: #6f42c1; font-family: Georgia, serif; font-size: 1.1rem; border: 2px solid #6f42c1; padding: 1rem; border-radius: .5rem; }
+.padre-demo .no-hereda { color: #198754; font-family: system-ui, sans-serif; }
+
+/* 2.6 media queries */
+.mq-box {
+    background: #dc3545;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: .75rem;
+    font-weight: 700;
+}
+.mq-box::after { content: "Menos de 768px (móvil)"; }
+@media (min-width: 768px)  { .mq-box { background: #fd7e14; } .mq-box::after { content: "768px o más (tablet)"; } }
+@media (min-width: 992px)  { .mq-box { background: #198754; } .mq-box::after { content: "992px o más (laptop)"; } }
+@media (min-width: 1200px) { .mq-box { background: #0d6efd; } .mq-box::after { content: "1200px o más (escritorio)"; } }
+
+/* 2.7 pseudo-elementos */
+.pe-before::before { content: "★ "; color: #ffc107; }
+.pe-after::after { content: " ✔"; color: #198754; }
+.pe-letter::first-letter { font-size: 3rem; font-weight: 700; color: var(--brand); float: left; line-height: 1; padding-right: .5rem; }
+.pe-line::first-line { font-weight: 700; text-transform: uppercase; color: #0d6efd; }
+.pe-sel::selection { background: #ffc107; color: #000; }
+.pe-input::placeholder { color: #dc3545; font-style: italic; }
+.pe-ribbon { position: relative; padding: 1.25rem; background: var(--bs-tertiary-bg); border-radius: .5rem; overflow: hidden; }
+.pe-ribbon::before { content: "NUEVO"; position: absolute; top: 12px; right: -30px; transform: rotate(45deg); background: #dc3545; color: #fff; font-size: .7rem; font-weight: 700; padding: 2px 34px; }
+
+/* 2.8 pseudo-clases */
+.pc-btn { background: #6f42c1; color: #fff; border: 0; padding: .6rem 1.2rem; border-radius: .5rem; transition: all .2s; }
+.pc-btn:hover { background: #0dcaf0; color: #000; transform: scale(1.05); }
+.pc-btn:active { transform: scale(.95); }
+.pc-btn:focus-visible { outline: 3px solid #ffc107; outline-offset: 3px; }
+.pc-btn:disabled { background: #adb5bd; cursor: not-allowed; transform: none; }
+.pc-list li:first-child { font-weight: 700; color: #198754; }
+.pc-list li:last-child { font-weight: 700; color: #dc3545; }
+.pc-list li:nth-child(even) { background: var(--bs-tertiary-bg); }
+.pc-check:checked + label { color: #198754; font-weight: 700; text-decoration: line-through; }
+.pc-input:focus { border-color: #6f42c1; box-shadow: 0 0 0 .25rem rgba(111,66,193,.25); }
+.pc-input:invalid { border-color: #dc3545; }
+.pc-input:valid { border-color: #198754; }
+
+/* 2.9 z-index */
+.z-stage { position: relative; height: 240px; background: var(--bs-tertiary-bg); border-radius: .75rem; overflow: hidden; }
+.z-box { position: absolute; width: 140px; height: 140px; border-radius: .75rem; color: #fff; font-weight: 700; display: flex; align-items: flex-start; padding: .5rem; box-shadow: 0 .5rem 1rem rgba(0,0,0,.25); }
+#zA { background: #dc3545; top: 20px; left: 20px; }
+#zB { background: #0d6efd; top: 50px; left: 70px; }
+#zC { background: #198754; top: 80px; left: 120px; }
+
+/* indicador de breakpoint */
+#bpBadge { position: fixed; right: 1rem; bottom: 1rem; z-index: 1080; }
